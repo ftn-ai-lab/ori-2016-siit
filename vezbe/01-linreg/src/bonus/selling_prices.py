@@ -21,9 +21,8 @@ from sklearn import linear_model
         
     Dobijena jednačina: 
         y = 2.54245910924 + 0.84203461 * x1 + 9.13727309 * x2 + 0.1805502 * x3 + 
-        + 13.31511517 * x4 + 1.93053047 * x5 + (-1.07030169) * x6 + 
-        + (-0.30201195) * x7 + (-0.07198748) * x8 + 1.02264378 * x9 + 
-        + 1.33991086 * x10 + 2.78686263 * x11
+        + 13.31511517 * x4 + 1.93053047 * x5 + (-1.07030169) * x6 + (-0.30201195) * x7 + 
+        + (-0.07198748) * x8 + 1.02264378 * x9 + 1.33991086 * x10 + 2.78686263 * x11
         
     Iz ovoga možemo zaključiti da na cenu kuće najviše utiču parametri pod 2 i 4,
     a najmanje utiču parametri pod 3, 7, 8.

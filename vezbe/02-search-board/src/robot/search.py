@@ -95,10 +95,12 @@ class IterativeDepthFirstSearch(Search):
 class GreedySearch(Search):
     def select_state(self, states):
         # TODO 3: Implementirati GS
+        # implementirati get_cost metodu u RobotState
         pass
 
 
 class AStarSearch(Search):
     def select_state(self, states):
         # TODO 4: Implementirati A*
+        # implementirati get_cost i get_current_cost metode u RobotState
         pass

@@ -76,6 +76,25 @@ class State(object):
         :return: str
         """
         pass
+    
+    @abstractmethod
+    def get_cost(self):
+        """
+        Apstraktna metoda koja treba da vrati procenu cene
+        (vrednost heuristicke funkcije) za ovo stanje.
+        Koristi se za vodjene pretrage.
+        :return: float
+        """
+        pass
+    
+    @abstractmethod
+    def get_current_cost(self):
+        """
+        Apstraktna metoda koja treba da vrati stvarnu trenutnu cenu za ovo stanje.
+        Koristi se za vodjene pretrage.
+        :return: float
+        """
+        pass
 
 
 class RobotState(State):
@@ -102,7 +121,7 @@ class RobotState(State):
             new_row = row + d_row  # nova pozicija po redu
             new_col = col + d_col  # nova pozicija po koloni
             # ako nova pozicija nije van table i ako nije zid ('w'), ubaci u listu legalnih pozicija
-            if 0 <= new_row < self.board.rows and 0 <= new_col < self.board.cols and self.board.data[row][col] != 'w':
+            if 0 <= new_row < self.board.rows and 0 <= new_col < self.board.cols and self.board.data[new_row][new_col] != 'w':
                 new_positions.append((new_row, new_col))
         return new_positions
 

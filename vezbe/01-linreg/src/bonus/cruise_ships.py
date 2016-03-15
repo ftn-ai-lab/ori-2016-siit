@@ -2,7 +2,7 @@
 """
 Created on Mon Mar 14 01:27:26 2016
 
-@author: Dusan
+@author: Dusan Borovcanin SW36/2013
 """
 
 from __future__ import print_function

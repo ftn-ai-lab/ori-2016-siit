@@ -52,12 +52,13 @@ def key(event):
     k = event.keysym.lower()
     row, col, new_row, new_col = board.move_player_keyboard(k)
     if not game_over and row is not None and col is not None and new_row is not None and new_col is not None:
-        update_board(row, col)
-        update_board(new_row, new_col)
-        if len(board.find_position('g')) == 0:
-            tkMessageBox.showinfo('Result', 'You\'ve won!')
-            game_over = True
-            return
+        with locks[row][col], locks[new_row][new_col]:
+            update_board(row, col)
+            update_board(new_row, new_col)
+            if len(board.find_position('g')) == 0:
+                tkMessageBox.showinfo('Result', 'You\'ve won!')
+                game_over = True
+                return
 
 
 def switch_cell(event, row=None, col=None):
@@ -270,11 +271,10 @@ grid_text_ids = [[[]] * cols for _ in range(rows)]
 # mapiranje sadrzaja table na boju celije
 board_to_colors = {'.': 'white',
                    'w': 'gray',
-                   'g': 'orangered',
-                   'p': 'yellow'}
+                   'g': 'orangered'}
 # mapiranje sadrzaja table na ikonicu
-board_to_icons = {'r': 'robot.png',
-                  'e': 'bad_robot.png'}
+board_to_icons = {'r': 'blue',
+                  'e': 'red'}
 
 
 root = tk.Tk()

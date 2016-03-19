@@ -268,8 +268,8 @@ canvas = tk.Canvas(root, width=cols * cell_size + 1, height=rows * cell_size + 1
 # load icons
 canvas.icons = dict()
 icons = dict()
-for f in os.listdir('icons'):
-    icon = Image.open(os.path.join('icons', f))
+for f in os.listdir('./../robot/icons'):
+    icon = Image.open(os.path.join('./../robot/icons', f))
     icon = icon.resize((cell_size - 2, cell_size - 2), Image.ANTIALIAS)  # resize icon to fit cell
     icon = ImageTk.PhotoImage(icon)
     icons[f] = icon
@@ -299,6 +299,6 @@ ui2.pack(side=tk.LEFT, expand=tk.YES, fill=tk.BOTH, anchor=tk.W)
 stat_report.pack(side=tk.RIGHT, expand=tk.NO, fill=tk.NONE)
 
 # load default board
-load_board('boards/board.brd')
+load_board('./../robot/boards/board.brd')
 
 root.mainloop()

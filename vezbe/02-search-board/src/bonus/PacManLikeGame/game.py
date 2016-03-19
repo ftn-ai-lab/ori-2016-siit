@@ -273,8 +273,8 @@ board_to_colors = {'.': 'white',
                    'w': 'gray',
                    'g': 'orangered'}
 # mapiranje sadrzaja table na ikonicu
-board_to_icons = {'r': 'blue',
-                  'e': 'red'}
+board_to_icons = {'r': 'robot.png',
+                  'e': 'bad_robot.png'}
 
 
 root = tk.Tk()

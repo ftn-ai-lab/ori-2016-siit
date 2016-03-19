@@ -2,6 +2,7 @@ from __future__ import print_function
 
 from collections import deque
 from abc import *
+from state import *
 
 
 class Search(object):
@@ -11,6 +12,7 @@ class Search(object):
 
     def __init__(self, board):
         self.board = board
+        self.max_depth = 2
 
     def search(self, initial_state):
         """
@@ -50,6 +52,16 @@ class Search(object):
             states_list.extend(new_states)
             # dodaj sledeca moguca stanja u set stanja
             states_set.update([new_state.unique_hash() for new_state in new_states])
+            
+            # while petlja treba da se zavrsi i ako je lista cvorova neprazna, ali su u njoj svorovi vece dubine od max_depth
+            if all(s.depth>self.max_depth for s in states_list):
+                break
+        
+        # Samo u slucaju IterativeDepthFirstSearch-a pokrecemo opet, ali samo ako je dubina manja od 128.
+        if isinstance(self, IterativeDepthFirstSearch) and self.max_depth < 128:
+             self.max_depth += 1
+             return self.search(RobotState)        
+        
         return None, processed_list, states_list
 
     @staticmethod
@@ -83,24 +95,38 @@ class BreadthFirstSearch(Search):
 class DepthFirstSearch(Search):
     def select_state(self, states):
         # TODO 1: Implementirati DFS
-        pass
+        return states.pop()
 
 
 class IterativeDepthFirstSearch(Search):
     def select_state(self, states):
         # TODO 2: Implementirati IDFS
-        pass
+        while len(states) != 0:
+             state = states.pop()
+             if state.depth <= self.max_depth:
+                 return state
 
 
 class GreedySearch(Search):
     def select_state(self, states):
         # TODO 3: Implementirati GS
         # implementirati get_cost metodu u RobotState
-        pass
+        best = states[0]
+        for state in states:
+            if(best.get_cost() > state.get_cost()):
+                best = state
+        states.remove(best);
+        return best
 
 
 class AStarSearch(Search):
     def select_state(self, states):
         # TODO 4: Implementirati A*
         # implementirati get_cost i get_current_cost metode u RobotState
-        pass
+        best = states[0]
+        for state in states:
+            if(best.get_cost() + best.get_current_cost()> state.get_cost() + state.get_current_cost()):
+                best = state
+        states.remove(best);
+        return best
+

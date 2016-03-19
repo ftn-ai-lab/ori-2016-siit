@@ -172,7 +172,7 @@ def do_search():
     global processed, path
     reset()
     # koju strategiju pretrage koristiti
-    search = BreadthFirstSearch(board)
+    search = IterativeDepthFirstSearch(board)
     # kog "agenta" koristiti
     initial_state = RobotState
 

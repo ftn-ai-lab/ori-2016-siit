@@ -130,3 +130,9 @@ class RobotState(State):
 
     def unique_hash(self):
         return str(self.position)
+        
+    def get_cost(self):
+        return math.sqrt((self.position[0] - self.goal_position[0])**2 + (self.position[1] - self.goal_position[1])**2)
+        
+    def get_current_cost(self):
+        return self.depth

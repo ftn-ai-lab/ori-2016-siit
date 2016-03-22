@@ -5,7 +5,6 @@ from __future__ import print_function
 from collections import deque
 from abc import *
 import sys
-from state import RobotState
 
 class Search(object):
     """

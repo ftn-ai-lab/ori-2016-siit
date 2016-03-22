@@ -10,9 +10,9 @@ import sys
 import time
 from PIL import Image, ImageTk  # pip install --upgrade Pillow==3.1.1
 
-from board import Board
-from search import *
-from state import *
+from sw4board import Board
+from sw4search import *
+from sw4state import *
 
 
 def load_board_from_file(filename=None):

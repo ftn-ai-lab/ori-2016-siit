@@ -1,3 +1,8 @@
+"""
+    @author:    SW 15/2013   Dragutin Marjanovic
+    @email:     dmarjanovic94@gmail.com
+"""
+
 from __future__ import print_function
 
 import copy, random

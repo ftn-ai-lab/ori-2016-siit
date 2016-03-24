@@ -47,9 +47,4 @@ class State(object):
         :return:
         """
         # TODO 3: Implementirati jednostavnu evaluacionu funkciju (suma vrednosti svih figura na tabli)
-        for row in range(self.board.rows):
-            for col in range(self.board.cols):
-                piece = self.board.determine_piece(row, col)
-                if piece is not None:
-                    self.value += piece.get_value()
         return self.value

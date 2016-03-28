@@ -10,7 +10,7 @@ import tkFileDialog
 import os
 import copy
 import time
-from PIL import Image, ImageTk  # pip install --upgrade Pillow==3.1.1
+from PIL import Image, ImageTk  #pip install --upgrade Pillow==3.1.1
 
 from board import Board
 from state import *
@@ -67,9 +67,10 @@ def move_piece(event, row=None, col=None):
                 update_board(move[0], move[1])
             update_board(row, col)
     else:
-        # move piece
+        # move piece    
         from_row, from_col = selected
-        if (row, col) != selected and (row, col) not in moves:
+        
+        if (row, col) != selected and ((row, col) not in moves and (row,col,-1) not in moves and (row,col,1) not in moves):
             return
         selected = None
         moves_ = copy.copy(moves)
@@ -79,7 +80,15 @@ def move_piece(event, row=None, col=None):
 
         if from_row != row or from_col != col:
             history.append(copy.deepcopy(board))
-            board.move_piece(from_row, from_col, row, col)
+            
+            if (from_row == 7 and from_col == 4 and row == 7 and col == 7 
+            and board.data[7][4].endswith('k') and board.data[7][7].endswith('r')):
+                board.small_rocade_move(board.data[7][4][0])
+            elif(from_row == 7 and from_col == 4 and row == 7 and col == 0 
+            and board.data[7][4].endswith('k') and board.data[7][0].endswith('r')):
+                board.big_rocade_move(board.data[7][4][0])
+            else:
+                board.move_piece(from_row, from_col, row, col)
 
         update_board(from_row, from_col)
         update_board(row, col)
@@ -114,7 +123,7 @@ def update_board(row, col):
 
     if selected is not None:
         color = 'salmon'
-        if (row, col) in moves:
+        if (row, col) in moves or (row, col, -1) in moves or (row,col,1) in moves:
             color = 'light green'
     else:
         color = 'white' if (row + col) % 2 == 0 else 'gray'

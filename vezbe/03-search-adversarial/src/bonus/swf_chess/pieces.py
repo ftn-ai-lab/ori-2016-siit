@@ -446,15 +446,41 @@ class King(Piece):
     def get_legal_moves(self):
         row = self.row
         col = self.col
-        side = self.side
         legal_moves = []
         
         d_rows = [-1, -1, -1, 0, 0, 1, 1, 1]
         d_cols = [-1, 0, 1, -1, 1, -1, 0, 1]
         
+        
+        #rokada bijeli igrac
+        if (self.side == 'w' and not self.board.wk_moved):
+            if (self.board.data[7][5] == '.' and self.board.data[7][6] == '.' and self.board.data[7][7] == 'wr'
+                and not self.board.wrr_moved):
+                #mala rokada                
+                legal_moves.append((7,7,-1))
+            if (self.board.data[7][1] == '.' and self.board.data[7][2] == '.' and self.board.data[7][3] == '.' 
+                and self.board.data[7][0] == 'wr' and not self.board.wrl_moved):
+                #velika rokada
+                legal_moves.append((7,0,1))
+        
+        #rokada crni igrac
+        if (self.side == 'b' and not self.board.bk_moved):
+            if (self.board.data[0][5] == '.' and self.board.data[0][6] == '.' and self.board.data[0][7] == 'br'
+                and not self.board.brr_moved):
+                #mala rokada                
+                legal_moves.append((0,7,-1))
+            if (self.board.data[0][1] == '.' and self.board.data[0][2] == '.' and self.board.data[0][3] == '.' 
+                and self.board.data[0][0] == 'br' and not self.board.brl_moved):
+                #velika rokada
+                legal_moves.append((0,0,1))
+        
+                
+                
+        
         for d_row, d_col in zip(d_rows, d_cols):
             new_row = row + d_row
             new_col = col + d_col
+            
             if (self.side == 'w' and 0 <= new_row < self.board.rows and 0 <= new_col < self.board.cols 
                 and (self.board.data[new_row][new_col] == '.' or self.board.data[new_row][new_col].startswith('b'))):
                 legal_moves.append((new_row, new_col))

@@ -29,6 +29,13 @@ class Board:
                       'wk',  # beli kralj
                       'wq']  # bela kraljica
 
+        self.wk_moved = False
+        self.bk_moved = False
+        self.wrl_moved = False
+        self.wrr_moved = False
+        self.brl_moved = False
+        self.brr_moved = False
+        
         self.data = [['.'] * cols for _ in range(rows)]
 
     def load_from_file(self, file_path):
@@ -67,6 +74,65 @@ class Board:
             t = self.data[from_row][from_col]
             self.data[from_row][from_col] = '.'
             self.data[to_row][to_col] = t
+            self.move_of_king_and_rook(from_row, from_col, to_row, to_col)
+
+    def move_of_king_and_rook(self, from_row, from_col, to_row, to_col):
+        """
+        Provjera da li su se kraljevi ili topovi pomijerali zbog rokade
+        """  
+        #provjere da li su kraljevi ili topovi inicirali pomijeranje
+        if(from_row == 7 and from_col == 0):
+            self.wrl_moved = True
+        elif(from_row == 7 and from_col == 7):
+            self.wrr_moved = True
+        elif(from_row == 7 and from_col == 4):
+            self.wk_moved = True
+        elif(from_row == 0 and from_col == 0):
+            self.brl_moved = True
+        elif(from_row == 0 and from_col == 7):
+            self.brr_moved = True
+        elif(from_row == 0 and from_col == 4):
+            self.bk_moved = True
+        
+        #provjera da li je neko pojeo topove
+        if(to_row == 7 and to_col == 0):
+            self.wrl_moved = True
+        elif(to_row == 7 and to_col == 7):
+            self.wrr_moved = True
+        elif(to_row == 0 and to_col == 0):
+            self.brl_moved = True
+        elif(to_row == 0 and to_col == 7):
+            self.brr_moved = True
+        
+
+
+    def small_rocade_move(self, color):
+        if(color == 'w'):
+            self.data[7][5] = 'wr' 
+            self.data[7][6] = 'wk' 
+            self.data[7][4] = '.'
+            self.data[7][7] = '.'
+            self.wk_moved = True
+        else:
+            self.data[0][5] = 'br' 
+            self.data[0][6] = 'bk' 
+            self.data[0][4] = '.'
+            self.data[0][7] = '.'
+            self.bk_moved = True
+
+    def big_rocade_move(self, color):
+        if(color == 'w'):
+            self.data[7][3] = 'wr' 
+            self.data[7][2] = 'wk' 
+            self.data[7][4] = '.'
+            self.data[7][0] = '.'
+            self.wk_moved = True
+        else:
+            self.data[0][3] = 'wr' 
+            self.data[0][2] = 'wk' 
+            self.data[0][4] = '.'
+            self.data[0][0] = '.'
+            self.bk_moved = True
 
     def clear(self):
         """

@@ -40,7 +40,14 @@ class State(object):
                     legal_moves = piece.get_legal_moves()  # svi moguci potezi za figuru
                     for legal_move in legal_moves:
                         new_board = copy.deepcopy(self.board)
-                        new_board.move_piece(row, col, legal_move[0], legal_move[1])
+                        if(len(legal_move) == 3 ):
+                            if(legal_move[2] == -1):
+                                new_board.small_rocade_move(piece.side)
+                            else:
+                                new_board.big_rocade_move(piece.side)
+                        else:
+                            new_board.move_piece(row, col, legal_move[0], legal_move[1])
+                            
                         next_state = State(new_board, self)
                         next_states.append(next_state)
                         

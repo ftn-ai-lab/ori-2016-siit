@@ -185,6 +185,21 @@ class Board:
                 if self.data[row][col] == element:
                     return row, col
         return None, None
+        
+    def find_position(self, element):
+        """
+        Pronalazenje elementa unutar table.
+        :param element: kod elementa.
+        :returns: list(tuple(int, int))
+        """
+        
+        positions = []
+        for row in range(self.rows):
+            for col in range(self.cols):
+                if self.data[row][col] == element:
+                    positions.append((row, col))
+        
+        return positions
 
     def determine_piece(self, row, col):
         """
@@ -209,3 +224,18 @@ class Board:
                 return King(self, row, col, side)
             if piece == 'q':
                 return Queen(self, row, col, side)
+                
+    
+    # Metoda koja provjerava da li je sah        
+    def is_check(self, side):
+        elem = self.find_position(str(side) + 'k')
+        
+        
+        
+    # Metoda koja provjerava da li je sah mat       
+    def is_checkmate(self):
+        pass
+    
+    # Metoda koja provjerava da li je pat    
+    def is_draw(self):
+        pass

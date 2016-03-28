@@ -43,8 +43,10 @@ class State(object):
                         if(len(legal_move) == 3 ):
                             if(legal_move[2] == -1):
                                 new_board.small_rocade_move(piece.side)
-                            else:
+                            elif(legal_move[2] == 1):
                                 new_board.big_rocade_move(piece.side)
+                            elif(legal_move[2] == 0):
+                                new_board.en_passant(row, col, legal_move[0], legal_move[1])
                         else:
                             new_board.move_piece(row, col, legal_move[0], legal_move[1])
                             

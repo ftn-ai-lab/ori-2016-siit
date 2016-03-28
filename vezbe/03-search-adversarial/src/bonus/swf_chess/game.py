@@ -70,7 +70,8 @@ def move_piece(event, row=None, col=None):
         # move piece    
         from_row, from_col = selected
         
-        if (row, col) != selected and ((row, col) not in moves and (row,col,-1) not in moves and (row,col,1) not in moves):
+        if ((row, col) != selected and ((row, col) not in moves and (row,col,-1) not in moves 
+            and (row,col,1) not in moves and (row,col,0) not in moves)):
             return
         selected = None
         moves_ = copy.copy(moves)
@@ -81,12 +82,16 @@ def move_piece(event, row=None, col=None):
         if from_row != row or from_col != col:
             history.append(copy.deepcopy(board))
             
-            if (from_row == 7 and from_col == 4 and row == 7 and col == 7 
-            and board.data[7][4].endswith('k') and board.data[7][7].endswith('r')):
+            if (from_row == 7 and from_col == 4 and row == 7 and col == 6 
+                and board.data[7][4].endswith('k') and board.data[7][7].endswith('r')):
                 board.small_rocade_move(board.data[7][4][0])
-            elif(from_row == 7 and from_col == 4 and row == 7 and col == 0 
-            and board.data[7][4].endswith('k') and board.data[7][0].endswith('r')):
+            elif(from_row == 7 and from_col == 4 and row == 7 and col == 2 
+                and board.data[7][4].endswith('k') and board.data[7][0].endswith('r')):
                 board.big_rocade_move(board.data[7][4][0])
+            elif(board.data[from_row][from_col].endswith('p') and board.data[row][col]=='.'
+                and abs(row-from_row)==1 and (abs(row-from_row) + abs(col-from_col))==2):
+                #ako pijun ide po dijagonali na prazno polje to je znak da je en passant
+                board.en_passant(from_row, from_col, row, col)
             else:
                 board.move_piece(from_row, from_col, row, col)
 
@@ -123,7 +128,7 @@ def update_board(row, col):
 
     if selected is not None:
         color = 'salmon'
-        if (row, col) in moves or (row, col, -1) in moves or (row,col,1) in moves:
+        if (row, col) in moves or (row, col, -1) in moves or (row,col,1) in moves or (row,col,0) in moves:
             color = 'light green'
     else:
         color = 'white' if (row + col) % 2 == 0 else 'gray'
@@ -199,6 +204,7 @@ cols = 8  # broj kolona table
 cell_size = 80  # velicina celije
 
 board = Board(rows=rows, cols=cols)
+
 
 history = [copy.deepcopy(board)]
 

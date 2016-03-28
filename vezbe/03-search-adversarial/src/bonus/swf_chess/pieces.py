@@ -54,6 +54,8 @@ class Pawn(Piece):
         d_rows = []
         d_cols = []
 
+        en_passant_moves = []
+    
         if side == 'w':  # beli pijun
             # jedan unapred, ako je polje prazno
             if row > 0 and self.board.data[row-1][col] == '.':
@@ -71,6 +73,13 @@ class Pawn(Piece):
             if col < self.board.cols - 1 and row > 0 and self.board.data[row-1][col+1].startswith('b'):
                 d_rows.append(-1)
                 d_cols.append(1)
+            #en passant
+            if row == 3 and self.board.last_row == 3:
+                if self.board.last_col == (col-1):
+                    en_passant_moves.append((row-1,col-1,0))
+                if self.board.last_col == (col+1):
+                    en_passant_moves.append((row-1,col+1,0))                    
+         
         else:  # crni pijun
             # TODO 2: Implementirani moguci sljedeci potezi za crnog pijuna
             # jedan unapijred, ako je polje prazno
@@ -89,7 +98,12 @@ class Pawn(Piece):
             if col < self.board.cols - 1 and row < 7 and self.board.data[row+1][col+1].startswith('w'):
                 d_rows.append(1)
                 d_cols.append(1)
-            
+            #en passant
+            if row == 4 and self.board.last_row == 4:
+                if self.board.last_col == (col-1):
+                    en_passant_moves.append((row+1,col-1,0))
+                if self.board.last_col == (col+1):
+                    en_passant_moves.append((row+1,col+1,0))      
 
         for d_row, d_col in zip(d_rows, d_cols):
                 new_row = row + d_row
@@ -97,6 +111,8 @@ class Pawn(Piece):
                 if 0 <= new_row < self.board.rows and 0 <= new_col < self.board.cols:
                     legal_moves.append((new_row, new_col))
 
+        for move in en_passant_moves:
+            legal_moves.append(move)
         return legal_moves
 
     def get_value_(self):
@@ -457,22 +473,22 @@ class King(Piece):
             if (self.board.data[7][5] == '.' and self.board.data[7][6] == '.' and self.board.data[7][7] == 'wr'
                 and not self.board.wrr_moved):
                 #mala rokada                
-                legal_moves.append((7,7,-1))
+                legal_moves.append((7,6,-1))
             if (self.board.data[7][1] == '.' and self.board.data[7][2] == '.' and self.board.data[7][3] == '.' 
                 and self.board.data[7][0] == 'wr' and not self.board.wrl_moved):
                 #velika rokada
-                legal_moves.append((7,0,1))
+                legal_moves.append((7,2,1))
         
         #rokada crni igrac
         if (self.side == 'b' and not self.board.bk_moved):
             if (self.board.data[0][5] == '.' and self.board.data[0][6] == '.' and self.board.data[0][7] == 'br'
                 and not self.board.brr_moved):
                 #mala rokada                
-                legal_moves.append((0,7,-1))
+                legal_moves.append((0,6,-1))
             if (self.board.data[0][1] == '.' and self.board.data[0][2] == '.' and self.board.data[0][3] == '.' 
                 and self.board.data[0][0] == 'br' and not self.board.brl_moved):
                 #velika rokada
-                legal_moves.append((0,0,1))
+                legal_moves.append((0,2,1))
         
                 
                 

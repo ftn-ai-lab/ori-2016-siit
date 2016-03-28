@@ -29,12 +29,17 @@ class Board:
                       'wk',  # beli kralj
                       'wq']  # bela kraljica
 
+        # atributi koji pamte da li su se topovi ili kraljevi pomjerili (rokada)
         self.wk_moved = False
         self.bk_moved = False
         self.wrl_moved = False
         self.wrr_moved = False
         self.brl_moved = False
         self.brr_moved = False
+        
+        #atribut koji pamti koja se figura posljednja pomjerila (en passant)
+        self.last_row = -1
+        self.last_col = -1
         
         self.data = [['.'] * cols for _ in range(rows)]
 
@@ -75,7 +80,9 @@ class Board:
             self.data[from_row][from_col] = '.'
             self.data[to_row][to_col] = t
             self.move_of_king_and_rook(from_row, from_col, to_row, to_col)
-
+            self.last_row = to_row
+            self.last_col = to_col
+    
     def move_of_king_and_rook(self, from_row, from_col, to_row, to_col):
         """
         Provjera da li su se kraljevi ili topovi pomijerali zbog rokade
@@ -107,32 +114,57 @@ class Board:
 
 
     def small_rocade_move(self, color):
+        """
+        Mala rokada podrazumijeva da pozicije mijenjaju kralj i top sa desne strane.
+        """
         if(color == 'w'):
             self.data[7][5] = 'wr' 
             self.data[7][6] = 'wk' 
             self.data[7][4] = '.'
             self.data[7][7] = '.'
             self.wk_moved = True
+            self.last_row = 7
+            self.last_col = 6
+
         else:
             self.data[0][5] = 'br' 
             self.data[0][6] = 'bk' 
             self.data[0][4] = '.'
             self.data[0][7] = '.'
             self.bk_moved = True
+            self.last_row = 0
+            self.last_col = 6
 
     def big_rocade_move(self, color):
+        """
+        Velika rokada podrazumijeva da pozicije mijenjaju kralj i top sa lijeve strane.
+        """
         if(color == 'w'):
             self.data[7][3] = 'wr' 
             self.data[7][2] = 'wk' 
             self.data[7][4] = '.'
             self.data[7][0] = '.'
             self.wk_moved = True
+            self.last_row = 7
+            self.last_col = 2
         else:
             self.data[0][3] = 'wr' 
             self.data[0][2] = 'wk' 
             self.data[0][4] = '.'
             self.data[0][0] = '.'
             self.bk_moved = True
+            self.last_row = 0
+            self.last_col = 2
+
+    def en_passant(self, from_row, from_col, to_row, to_col):
+        """
+        En passant potez - potrebno je da se data figura pomjeri ukoso na novu poziciju i da pojede
+        pijuna koji je u ovom slucaju ispod/iznad date figure(bijela/crna) na novoj poziciji.
+        """
+        t = self.data[from_row][from_col]
+        self.data[from_row][from_col] = '.'
+        self.data[to_row][to_col] = t        
+        self.data[from_row][to_col] = '.'
 
     def clear(self):
         """

@@ -28,19 +28,20 @@ class AdversarialSearch(object):
         self.max_depth = max_depth
 
     @abstractmethod
-    def perform_adversarial_search(self):
+    def perform_adversarial_search(self, player=0):
         """
         Apstraktna metoda koja vrsi pretragu i vraca sledece stanje.
+        :param player: igrac za koga se bira naredni potez, 1 za bijelog, 0 za crnog igraca.
         """
         pass
 
 
 class Minimax(AdversarialSearch):
-    def minimax(self, state, depth):
+    def minimax(self, state, depth, player):
         if depth == self.max_depth:
             return state.calculate_value()
             
-        max_player = depth % 2 == 0
+        max_player = depth % 2 == player
         min_player = not max_player
        
         next_states = state.generate_next_states(max_player)
@@ -48,7 +49,7 @@ class Minimax(AdversarialSearch):
         next_state_best = None
          
         for next_state in next_states:
-            next_state_value = self.minimax(next_state, depth + 1)
+            next_state_value = self.minimax(next_state, depth + 1, player)
            
             if max_player and next_state_value > best_value:
                 best_value = next_state_value
@@ -64,17 +65,17 @@ class Minimax(AdversarialSearch):
         return best_value
             
         
-    def perform_adversarial_search(self):
+    def perform_adversarial_search(self, player=0):
         # TODO 1: Implementiran minimax algoritam
-        return self.minimax(self.initial_state, 0)
+        return self.minimax(self.initial_state, 0, player)
 
 
 class AlphaBeta(AdversarialSearch):
-    def alphabeta(self, state, depth, alpha, beta):
+    def alphabeta(self, state, depth, alpha, beta, player):
         if depth == self.max_depth:
             return state.calculate_value()
          
-        max_player = depth % 2 == 0
+        max_player = depth % 2 == player
         min_player = not max_player
        
         next_states = state.generate_next_states(max_player)
@@ -82,7 +83,7 @@ class AlphaBeta(AdversarialSearch):
         next_state_best = None
          
         for next_state in next_states:
-            next_state_value = self.alphabeta(next_state, depth + 1, alpha, beta)
+            next_state_value = self.alphabeta(next_state, depth + 1, alpha, beta, player)
            
             if max_player and next_state_value > best_value:
                 best_value = next_state_value
@@ -103,6 +104,6 @@ class AlphaBeta(AdversarialSearch):
         return best_value
         
 
-    def perform_adversarial_search(self):
+    def perform_adversarial_search(self, player=0):
         # TODO 4: Implementiran alpha-beta algoritam
-        return self.alphabeta(self.initial_state, 0, MIN_FLOAT, MAX_FLOAT)
+        return self.alphabeta(self.initial_state, 0, MIN_FLOAT, MAX_FLOAT, player)

@@ -17,7 +17,8 @@ from PIL import Image, ImageTk  #pip install --upgrade Pillow==3.1.1
 from board import Board
 from state import *
 from search import *
-
+import time
+import threading
 
 def load_board_from_file(filename=None):
     if filename is None:
@@ -121,6 +122,71 @@ def move_piece(event, row=None, col=None):
                 board = next_state.board
                 display_board()
                 start = time.time()
+
+
+#tread koji sluzi za kretanje oba igraca samostalno
+thread = None
+#atribut za zavrsetak igre
+finished = False
+#atribut za prekid treda
+terminated = False
+
+def start_both_AI():
+    global thread, terminated
+    terminated = False
+    if(thread is None):
+        thread = threading.Thread(target=both_AI)
+        thread.start()
+
+def stop_both_AI():
+    global thread, terminated
+    if (thread is not None):   
+        terminated = True    
+        thread.join()
+        thread = None
+
+def on_close():
+    global finished, thread
+    stop_both_AI()
+    root.destroy()
+
+def both_AI():
+    global board, root, thread, finished
+    
+    while(not finished and not terminated):
+        start = time.time()
+        search = AlphaBeta(board, 3)  # ovde promeniti koji se algoritam koristi i koja je dubina pretrage
+        next_state = search.perform_adversarial_search(1)  # izvrsi pretragu za bijelog igraca
+        end = time.time()
+        duration = end - start
+        print('--- {0} was thinking for {1} seconds ---'.format('White', duration))
+        if next_state is None:
+            print('--- {0} has no moves ---'.format('White'))
+            finished = True
+        else:
+            board = next_state.board
+            display_board()
+            root.update()
+        
+        #spavanje 2 sekunde da se vidi odigrani potez
+        time.sleep(2)        
+        
+        if(not finished):
+            start = time.time()
+            search = AlphaBeta(board, 3)
+            next_state = search.perform_adversarial_search(0)  # izvrsi pretragu za crnog igraca
+            end = time.time()
+            duration = end - start
+            print('--- {0} was thinking for {1} seconds ---'.format('Black', duration))
+            if next_state is None:
+                print('--- {0} has no moves ---'.format('Black'))
+                finished = True
+            else:
+                board = next_state.board
+                display_board()
+                root.update()
+
+        time.sleep(2)   
 
 
 def update_board(row, col):
@@ -262,10 +328,14 @@ for f in os.listdir('../../chess/icons'):
 # create buttons
 restart_button = tk.Button(ui, text='RESET', width=10, command=reset)
 undo_button = tk.Button(ui, text='UNDO', width=10, command=undo)
+both_AI_button = tk.Button(ui, text='BOTH AI', width=10, command=start_both_AI)
+stop_both_AI_button = tk.Button(ui, text='STOP BOTH AI', width=10, command=stop_both_AI)
 
 # add buttons to UI
 restart_button.grid(row=4, column=0, padx=10, pady=10)
 undo_button.grid(row=5, column=0, padx=10, pady=10)
+both_AI_button.grid(row=6, column=0, padx=10, pady=10)
+stop_both_AI_button.grid(row=7, column=0, padx=10, pady=10)
 
 # put everything on the screen
 display_board()
@@ -277,4 +347,5 @@ ui2.pack(side=tk.LEFT, expand=tk.YES, fill=tk.BOTH, anchor=tk.W)
 # load default board
 load_board('../../chess/boards/board.brd')
 
+root.protocol('WM_DELETE_WINDOW', on_close)  # root is your root window
 root.mainloop()

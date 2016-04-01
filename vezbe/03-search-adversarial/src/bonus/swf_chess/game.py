@@ -1,6 +1,8 @@
 """
-    @author:    SW 15/2013   Dragutin Marjanovic
-    @email:     dmarjanovic94@gmail.com
+    @authors:    SW F/2013   Dragutin Marjanovic
+                 SW 9/2013   Bojan Blagojevic
+    @emails:     dmarjanovic94@gmail.com
+                 datiglavaradi@gmail.com
 """
 
 from __future__ import print_function
@@ -42,11 +44,12 @@ def reset():
 
 selected = None
 moves = None
+check = None
 start, end = time.time(), None
 
 
 def move_piece(event, row=None, col=None):
-    global selected, moves, board, history, start, end
+    global selected, moves, check, board, history, start, end
     if row is None and col is None:
         cx = event.x
         cy = event.y
@@ -97,7 +100,7 @@ def move_piece(event, row=None, col=None):
 
         update_board(from_row, from_col)
         update_board(row, col)
-
+    
         end = time.time()
         duration = end - start
         print('--- {0} was thinking for {1} seconds ---'.format('White', duration))
@@ -107,7 +110,7 @@ def move_piece(event, row=None, col=None):
         # --------------------------------
         if from_row != row or from_col != col:
             start = time.time()
-            search = AlphaBeta(board, 3)  # ovde promeniti koji se algoritam koristi i koja je dubina pretrage
+            search = AlphaBeta(board, 4)  # ovde promeniti koji se algoritam koristi i koja je dubina pretrage
             next_state = search.perform_adversarial_search()  # izvrsi pretragu
             end = time.time()
             duration = end - start
@@ -122,6 +125,7 @@ def move_piece(event, row=None, col=None):
 
 def update_board(row, col):
     global selected
+    
     data = board.data
     delete_elems(row, col)
     elem = data[row][col]
@@ -132,6 +136,13 @@ def update_board(row, col):
             color = 'light green'
     else:
         color = 'white' if (row + col) % 2 == 0 else 'gray'
+    
+    if elem == 'wk' and board.is_check('w'):
+        color = 'yellow'
+    
+    if elem == 'bk' and board.is_check('b'):
+        color = 'yellow'
+        
     draw_rectangle(row, col, color)
 
     if elem in board_to_icons:

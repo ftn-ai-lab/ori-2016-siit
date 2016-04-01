@@ -1,6 +1,8 @@
 """
-    @author:    SW 15/2013   Dragutin Marjanovic
-    @email:     dmarjanovic94@gmail.com
+    @authors:    SW F/2013   Dragutin Marjanovic
+                 SW 9/2013   Bojan Blagojevic
+    @emails:     dmarjanovic94@gmail.com
+                 datiglavaradi@gmail.com
 """
 
 from __future__ import print_function
@@ -30,6 +32,9 @@ class State(object):
         :return: list. Lista mogucih sledecih stanja.
         """
         next_states = []
+        
+        check_side = 'b' if max_player else 'w'
+        
         for row in range(self.board.rows):
             for col in range(self.board.cols):
                 piece = self.board.determine_piece(row, col)  # odredi koja je figura
@@ -49,9 +54,11 @@ class State(object):
                                 new_board.en_passant(row, col, legal_move[0], legal_move[1])
                         else:
                             new_board.move_piece(row, col, legal_move[0], legal_move[1])
-                            
-                        next_state = State(new_board, self)
-                        next_states.append(next_state)
+                        
+                        # Ne mozemo dodati u stanje ako je sah na tom stanju.
+                        if not new_board.is_check(check_side):
+                            next_state = State(new_board, self)
+                            next_states.append(next_state)
                         
         # TODO 5: Lista stanja se random mijesa da bi se igrac ponasao drugacije
         random.shuffle(next_states)

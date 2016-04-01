@@ -1,6 +1,8 @@
 """
-    @author:    SW 15/2013   Dragutin Marjanovic
-    @email:     dmarjanovic94@gmail.com
+    @authors:    SW F/2013   Dragutin Marjanovic
+                 SW 9/2013   Bojan Blagojevic
+    @emails:     dmarjanovic94@gmail.com
+                 datiglavaradi@gmail.com
 """
 
 from __future__ import print_function
@@ -185,21 +187,6 @@ class Board:
                 if self.data[row][col] == element:
                     return row, col
         return None, None
-        
-    def find_position(self, element):
-        """
-        Pronalazenje elementa unutar table.
-        :param element: kod elementa.
-        :returns: list(tuple(int, int))
-        """
-        
-        positions = []
-        for row in range(self.rows):
-            for col in range(self.cols):
-                if self.data[row][col] == element:
-                    positions.append((row, col))
-        
-        return positions
 
     def determine_piece(self, row, col):
         """
@@ -227,15 +214,22 @@ class Board:
                 
     
     # Metoda koja provjerava da li je sah        
-    def is_check(self, side):
-        elem = self.find_position(str(side) + 'k')
-        
-        
-        
-    # Metoda koja provjerava da li je sah mat       
-    def is_checkmate(self):
-        pass
-    
-    # Metoda koja provjerava da li je pat    
-    def is_draw(self):
-        pass
+    def is_check(self, side, king_position = None):
+        if king_position is None:
+            king_position = self.find_position(str(side) + 'k')
+            
+        if side == 'w':
+            op_side = 'b'
+        else:
+            op_side = 'w'
+
+        for row in range(self.rows):
+            for col in range(self.cols):
+                if self.data[row][col] != '.' and (not self.data[row][col].startswith(side)) and self.data[row][col] != op_side + 'k':
+                    piece = self.determine_piece(row, col)
+                    positions = piece.get_legal_moves()
+                    
+                    if king_position in positions:
+                        return True
+                                   
+        return False

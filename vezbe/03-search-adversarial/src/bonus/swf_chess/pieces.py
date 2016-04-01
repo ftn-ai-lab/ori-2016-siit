@@ -1,6 +1,8 @@
 """
-    @author:    SW 15/2013   Dragutin Marjanovic
-    @email:     dmarjanovic94@gmail.com
+    @authors:    SW F/2013   Dragutin Marjanovic
+                 SW 9/2013   Bojan Blagojevic
+    @emails:     dmarjanovic94@gmail.com
+                 datiglavaradi@gmail.com
 """
 
 from __future__ import print_function
@@ -489,10 +491,7 @@ class King(Piece):
                 and self.board.data[0][0] == 'br' and not self.board.brl_moved):
                 #velika rokada
                 legal_moves.append((0,2,1))
-        
-                
-                
-        
+
         for d_row, d_col in zip(d_rows, d_cols):
             new_row = row + d_row
             new_col = col + d_col

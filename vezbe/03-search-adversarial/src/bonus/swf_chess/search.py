@@ -1,6 +1,8 @@
 """
-    @author:    SW 15/2013   Dragutin Marjanovic
-    @email:     dmarjanovic94@gmail.com
+    @authors:    SW F/2013   Dragutin Marjanovic
+                 SW 9/2013   Bojan Blagojevic
+    @emails:     dmarjanovic94@gmail.com
+                 datiglavaradi@gmail.com
 """
 
 from __future__ import print_function

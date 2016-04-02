@@ -79,6 +79,15 @@ class Board:
         """
         if to_row < len(self.data) and to_col < len(self.data[0]):
             t = self.data[from_row][from_col]
+            
+            # Ako je figura crni pijun i idemo na posljedni red, dajemo crnu kraljicu
+            if t == 'bp' and to_row == 7:
+                t = 'bq'
+            
+            # Ako je figura bijeli pijun i idemo na posljedni red, dajemo bijelu kraljicu
+            if t == 'wp' and to_row == 0:
+                t = 'wq'
+                
             self.data[from_row][from_col] = '.'
             self.data[to_row][to_col] = t
             self.move_of_king_and_rook(from_row, from_col, to_row, to_col)

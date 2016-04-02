@@ -111,7 +111,7 @@ def move_piece(event, row=None, col=None):
         # --------------------------------
         if from_row != row or from_col != col:
             start = time.time()
-            search = AlphaBeta(board, 4)  # ovde promeniti koji se algoritam koristi i koja je dubina pretrage
+            search = AlphaBeta(board, 1)  # ovde promeniti koji se algoritam koristi i koja je dubina pretrage
             next_state = search.perform_adversarial_search()  # izvrsi pretragu
             end = time.time()
             duration = end - start
@@ -155,7 +155,7 @@ def both_AI():
     
     while(not finished and not terminated):
         start = time.time()
-        search = AlphaBeta(board, 3)  # ovde promeniti koji se algoritam koristi i koja je dubina pretrage
+        search = AlphaBeta(board, 1)  # ovde promeniti koji se algoritam koristi i koja je dubina pretrage
         next_state = search.perform_adversarial_search(1)  # izvrsi pretragu za bijelog igraca
         end = time.time()
         duration = end - start
@@ -173,7 +173,7 @@ def both_AI():
         
         if(not finished):
             start = time.time()
-            search = AlphaBeta(board, 3)
+            search = AlphaBeta(board, 1)
             next_state = search.perform_adversarial_search(0)  # izvrsi pretragu za crnog igraca
             end = time.time()
             duration = end - start

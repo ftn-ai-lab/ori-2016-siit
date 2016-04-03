@@ -76,7 +76,7 @@ class Pawn(Piece):
                 d_rows.append(-1)
                 d_cols.append(1)
             #en passant
-            if row == 3 and self.board.last_row == 3:
+            if row == 3 and self.board.last_row == 3 and self.board.data[self.board.last_row][self.board.last_col].endswith('p'):
                 if self.board.last_col == (col-1):
                     en_passant_moves.append((row-1,col-1,0))
                 if self.board.last_col == (col+1):
@@ -101,7 +101,7 @@ class Pawn(Piece):
                 d_rows.append(1)
                 d_cols.append(1)
             #en passant
-            if row == 4 and self.board.last_row == 4:
+            if row == 4 and self.board.last_row == 4 and self.board.data[self.board.last_row][self.board.last_col].endswith('p'):
                 if self.board.last_col == (col-1):
                     en_passant_moves.append((row+1,col-1,0))
                 if self.board.last_col == (col+1):

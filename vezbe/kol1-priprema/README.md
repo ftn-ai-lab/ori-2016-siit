@@ -2,7 +2,7 @@
 
 Prvi kolokvijum će se sastojati od zadatka iz oblasti pretraga i traje 2h.
 
-Zadaci će biti podeljeni na tri težine: lak (min 10, max 10 bodova), srednji (min 10, max 15 bodova) i težak (min 10, max 20 bodova).
+Zadaci će biti podeljeni na tri težine: lak (min 10, max 15 bodova), srednji (min 10, max 20 bodova) i težak (min 15, max 25 bodova).
 Student na papiru dobija tekst sva tri zadatka i bira jedan zadatak koji će raditi. Naravno, ako uspete da uradite npr. srednji i ostalo je još vremena, možete probati da uradite i težak, ali buduje se samo jedan zadatak.
 Kolokvijum će vam pregledati asistent na licu mesta. Kada asistent dođe da vam pregleda zadatak, izjašnjavate se koji zadatak želite da vam pregleda (lak, srednji ili težak).
 Bodovaće se kompletnost rešenja (da li uopšte radi) i optimalnost rešenja (koliko dobro radi).

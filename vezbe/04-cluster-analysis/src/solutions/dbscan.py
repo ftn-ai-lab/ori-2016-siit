@@ -40,8 +40,8 @@ class DBScan(object):
 
         cluster_index = -1
         for point in self.data:
-            # Ako je tacka posjecenja ili oznacena kao 'noise' preskacemo je
-            if not ('not_visited' == point[-1]):
+            # Ako je tacka posjecenja
+            if 'visited' == point[-1]:
                 continue
             
             # Oznacimo je kao 'visited'

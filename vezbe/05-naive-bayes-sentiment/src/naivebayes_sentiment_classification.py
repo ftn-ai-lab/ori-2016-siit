@@ -57,7 +57,6 @@ def fit(texts, sentiments):
 
 def predict(text, bag_of_words, words_count, texts_count):
     words = tokenize(text)          # tokenizacija teksta
-    counts = count_words(words)     # prebrojavanje reci u tekstu
 
     # TODO 6: implementirati Naivni Bayes klasifikator za sentiment teksta (recenzije)
     # rezultat treba da bude mapa verovatnoca da je dati tekst klasifikovan kao pozitivnu i negativna recenzija

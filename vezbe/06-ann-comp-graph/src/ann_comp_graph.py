@@ -141,6 +141,7 @@ class NeuronNode(ComputationalNode):
         # izracunate gradijente tezina ubaciti u listu dw
         raise NotImplementedError('TODO 8')
 
+        self.gradients = dw
         return dw
 
     def update_weights(self, learning_rate, momentum):

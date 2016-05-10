@@ -178,15 +178,15 @@ class NeuralLayer(ComputationalNode):
         return layer_output
 
     def backward(self, dz):  # dz je vektor, odnosno lista "n_neurons" elemenata
-        d = []
+        dd = []
         # backward-pass za sloj neurona je zapravo backward-pass za svaki neuron u sloju nad
         # zadatim spoljasnjim gradijentima dz
         for i, neuron in enumerate(self.neurons):
             neuron_dz = [d[i] for d in dz]
             neuron_dz = neuron.backward(neuron_dz)
-            d.append(neuron_dz[:-1])  # izuzimamo gradijent za bias jer se on ne propagira unazad
+            dd.append(neuron_dz[:-1])  # izuzimamo gradijent za bias jer se on ne propagira unazad
 
-        return d
+        return dd
 
     def update_weights(self, learning_rate, momentum):
         # azuriranje tezina slojeva neurona je azuriranje tezina svakog neurona u tom sloju

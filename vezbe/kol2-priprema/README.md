@@ -33,5 +33,5 @@ Predvideti smrtnosti pacijenata čiji podaci se nalaze u cancer_predict.csv.
 #### seeds.csv
 
 Podaci o semenima raznih vrsta pršenice. Za svako seme poznata je površina (area), obim (perimeter), 
-kompaktnost (compactness $$ C = 4*pi*A/P^2, $$), dužina zrna (length), širina (width) i koeficijent asimetrije (asymmetry).
+kompaktnost (compactness C = 4\*pi\*A/P^2), dužina zrna (length), širina (width) i koeficijent asimetrije (asymmetry).
 Odrediti koliko različitih vrsta pšenica postoji (na osnovu ovih podataka) i za svaku vrstu karakteristične vrednosti (koja ih najviše razlikuje od drugih vrsta).

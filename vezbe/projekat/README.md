@@ -20,7 +20,7 @@
 
 ### Prijava projekta
 
-* Projekti se prijavljuju na Google Spreadsheet [dokumentu]().
+* Projekti se prijavljuju na Google Spreadsheet [dokumentu](https://docs.google.com/spreadsheets/d/1b4c-FQH96kpDSifB_4_33regEvKt6jc0i6H6X2iieRs/edit#gid=0).
 * U prvom redu dat je primer prijave projekta, pa radite copy-paste i napravite potrebne izmene.
 * Koristite latinično pismo.
 * Budite pažljivi kako ne biste napravili problem kolegama koji su već prijavili projekat.

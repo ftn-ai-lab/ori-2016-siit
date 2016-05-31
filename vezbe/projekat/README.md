@@ -16,6 +16,7 @@
   * Predviđanje sportskih rezultata, vremena, berze...
 
 * Dosta interesantnih tema koje mogu poslužiti za inspiraciju možete videti na prošlogodišnjem kursu Machine Learning sa Stanford-a. [http://cs229.stanford.edu/projects2015.html](http://cs229.stanford.edu/projects2015.html)
+* Datasetovi/takmičenja na [https://www.kaggle.com](https://www.kaggle.com)
 
 
 ### Prijava projekta

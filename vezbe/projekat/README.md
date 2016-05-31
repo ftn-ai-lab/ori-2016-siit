@@ -1,5 +1,6 @@
 ﻿### Predmetni projekat
 
+* Mogu ga raditi samo studenti koji su na prvom kolokvijumu imali 16 ili više bodova.
 * Nosi od 20 do 40 bodova.
 * Praktični deo projekta (implementacija) nosi najviše 25 bodova.
 * Prezentacioni deo projekta (poster) nosi najviše 15 bodova.

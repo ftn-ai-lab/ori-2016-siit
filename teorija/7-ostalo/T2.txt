@@ -1,0 +1,40 @@
+Neuronske mreže
+-------------------
+1. Objasnite osnovne karakteristike neuronskih mreža.
+2. Šta podrazumevamo pod pojmom obučavanje neuronskih mreža
+3. Objasnite strukturu i način funkcionisanja veštačkog neurona
+4. Navedite i objasnite osnovne modele arhitekture veštačke neuronske mreže
+5. Objasnite ideju Back propagation algoritma
+6. Šta su Samoorganizujuće mape, kako se obučavaju i navedite neki primer korišćenja.
+7. Da li NN možemo da koristimo za aproksimaciju više dimenzionih funkcija i kako
+8. Da li se linearni klasifikator može implementirati pomoću neuronskih mreža
+9. Koja su ograničenja jednoslojnog perceptrona.
+10. Navedite i opišite značaj aktivacione funkcije 
+11. Objasnite šta je obučavanje neuronskih mreža
+12. Da li kod neuronskih mreža može da se pojavi overfitting, objasnite?
+
+
+Fuzzy sistemi
+-------------------
+1. Opišite fazi skup i čime se definiše
+2. Definišite fazi broj
+3. Objasnite šta je fazi relacija
+4. Opišite fazi lingvističku varijablu 
+5. Objasnite meru rasplinutosti skupa
+6. Objasnite princip ekstenzije i zašto se koristi
+7. Objasnite kako se definiše unija, presek i komplement skupa u teoriji fazi skupova
+8. Objasnite kako se definišu logički operatori AND, OR, NOT u fazi logici
+9. Za kakve probleme koristimo fazi logiku
+10. Prednosti i nedostaci fazi sistema u odnosu na neuronske mreže
+11. Kako definišemo kompoziciju fazi relacija navedite jedan primer
+12. Opišite alfa rez i osobinu konveksnosti fazi skupova
+13. Kako možemo da odredimo broj elemenata fazi skupa
+14. Kako definišemo operatore sabiranja, oduzimanja, množenja i delenja fazi brojeva
+15. Kako bi opisali fazi jednačinu i šta je rešenje
+
+
+Evolutivno računarstvo
+------------------------
+1. Objasnite osnovnu šemu evolutivnih algoritama
+2. Opišite jednostavni genetski algoritam i čemu služi
+3. Objasnite šta je selekcija a šta je mutacija.

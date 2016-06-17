@@ -1,0 +1,78 @@
+﻿Pretrage
+-------------------
+1. Opišite formalnu reprezentaciju pretrage u prostoru stanja
+2. Kakvi problemi se rešavaju primenom pretraga i kako.
+3. Koje su osnovne karakteristike slepih pretraga
+4. Koje su osnovne karakteristike vodenih pretraga
+5. Nacrtajte i objasnite algoritme za implementaciju pretrage: 
+   prvi u dubinu, prvi u širinu i "uniform cost" pretragu.
+   Objasnite dobre i loše strane sveke pojedinačne pretrage. 
+6. Nacrtajte i objasnite algoritme za implementaciju pretrage: 
+   Bidirekciona pretraga i A*.
+7. Objasnite algoritam pretrage prvi u dubinu sa iterativnim produbljavanjem.
+   Prednosti i nedostaci u odnosu na pretragu prvi u dubinu. 
+8. Objasnite algoritam simuliranog kaljenja.
+9. Šta je heuristička funkcija i gde se koristi. Navedite dva primera.
+10. Objasnite kriterijume za evaluaciju postupaka pretrage.
+11. Objasnite kako bi rešili problem slaganja slagalice. 
+    Na koji nacin bi definisali stanje a na koji prelaze izmedu stanja?
+12. Da li se pretraga može koristiti u problememima pronalaženja nula
+    višedimenzionalne funkcije i kako?
+13. Da li se pretraga može koristiti u iterativnim postupcima rešavanja 
+sistema algebarskih jednacina? Navedite primer i objasnite kako.
+14. Da li se pretraga može koristiti u problememima pronalaženja maksimuma
+    višedimenzionalne funkcije i kako?
+
+Simboličke logike
+-------------------
+1. Objasnite šta su simbolicke logike i čime se bave.
+2. Objasnite interpretaciju formule u propozicionoj logici.
+3. Ako je data formula 
+      P AND G OR (~G AND P) 
+   sa koliko interpretacija možete proveriti konzistentnost. Najbolji i najgori slučaj.  
+4. Objasnite zašto se validnost formule u logici prvog reda ne može dokazati proverom svih interpretacija.
+5. Objasnite proces unifikacije u PROLOGu i zašto se koristi.
+6. Objasnite na koji nacin PROLOG intepreter racuna odgovor.
+7. Objasnite na koji nacin se reprezentuje znanje o nekom problemu 
+   primenom formula. 
+8. U kojim problemima je pogodno koristiti simboličke logike?
+9. Koja su ogranicenja sistema koji su zasnovani na simbolickim logikama?
+10. Da li se neprecizna znanja mogu opisati pomocu tehnika zasnovanih na simbolickim 
+logikama, zašto ili kako?
+11. Objasnite kako PROLOG interpreter koristi tehnike pretraživanja i zašto?
+12. Objasnite kako se formira "stablo pretraživanja" u PROLOGu.
+13. Šta je deklarativno programiranje i kako je povezano sa simboličkim logikama
+14. Navedite tipove simbola koje se koriste u logici prvog reda. 
+15. Objasnite šta je supstitucija, nevedite nekoliko primera i objasnite cemu služi u PROLOGu.
+16. Svojim reima opišite pojam najopštijeg ujedinitelja.
+17. Objasnite proces ujedinjavanja dva terma.
+18. Koristeći iskaze predikatske logike opišite sledeće rečenice. 
+    Danas je toplo i ne pada kiša. Ako pada kiša ljudi nose kišobran.
+19. Koristeci iskaze logike prvog reda opišite sledeće iskaze: 
+    Za svaki realan broj postoji ceo broj koji je manji od njega.
+
+Mašinsko ucenje
+------------------
+1. Šta je mašinsko učenje
+2. Kakvi problemi se rešavaju primenom mašinskog učenja
+3. Navedite i opišite bar dva top problema u kojima se koristi mašinsko učenje. 
+4. Objasnite linerani klasifikator (osnove, dobre i loše osobine).
+5. Objasnite algoritam Nearest neighbour (osnove, dobre i loše osobine).
+6. Objasnite kategorizaciju algoritama ML u odnosu na vrstu podataka na 
+osnovu kojih se uči.
+7. Objasnite regresiju i navedite nekoliko primera.
+8. Objasnite šta je klasifikacija i navedite nekoliko primera.
+9. Navedite neki primer u kojem su rezultati učenja parametri modela 
+  i objasnite kako se pronalaze.
+10. Na osnovu cega možemo da ocenimo kvalitet nekog algoritma ML
+11. Šta podrazumevamo pod pojmom nadgledano ucenje? Navedite primer.
+12. Šta podrazumevamo pod pojmom ne nadgledano ucenje? Navedite primer.
+13. Da li se simbolicke logike mogu koristiti u problemima ML.
+14. Objasnite razliku izmedu klasterizacije i klasifikacije.
+15. Objasnite šta je stablo odlučivanja, kako se formira i zašto se koristi.
+16. Šta je overfiting i kako možemo da ga registrujemo.
+17. Objasnite K means algoritam.
+18. Objasnite DBSCAN algoritam.
+19. Objasnite Random forest algoritam.
+20. Objasnite "Naivni Bajes" filter.
+21. Kako odrediti bitne osobine za klasifikaciju?

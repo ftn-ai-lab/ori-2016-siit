@@ -1,0 +1,2 @@
+element(X, [X|_]).
+element(X, [Y|R]):-element(X, R).
